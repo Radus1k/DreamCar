@@ -13,7 +13,7 @@ Server is configured to use `MailDev` in order to simulate a mail server. More i
 
 # REST API
 
-The REST API to the DreamCar App is described  in `SwaggerDocs` file in the main tree.
+The REST API to the DreamCar App is described  in `DreamCarSwagger.html` file in the main tree.
 
 
 
