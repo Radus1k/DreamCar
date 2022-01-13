@@ -47,7 +47,8 @@ public class LicitationService {
     }
 
     public void addNewLicitation(Licitation licitation, Principal principal) throws IllegalAccessException {
-        if (!principal.getName().equals("admin")) {
+        if (!principal.getName().equals("admin@test.net")) {
+            System.out.println(principal.getName());
             throw new IllegalAccessException(
                     "Only admins can add new licitations!");
         }

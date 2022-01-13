@@ -1,0 +1,148 @@
+{
+	"id": "8e90c32a-d76f-bfba-1115-92988e38d8cd",
+	"name": "DreamCarAPI",
+	"description": "Request-uri facute catre Dreamcar API.\n",
+	"order": [
+		"91737ff0-f233-10bc-bed8-90328ee2c7c8",
+		"c20a13f3-d93b-72ff-42cc-0dde2ba16e33",
+		"4dcc5651-3d63-7b14-283d-6543ea793481",
+		"cd95b9bc-549b-0c84-9a40-8f4a6105aa29"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1642009035690,
+	"owner": "9713076",
+	"public": false,
+	"requests": [
+		{
+			"id": "4dcc5651-3d63-7b14-283d-6543ea793481",
+			"headers": "Content-Type: application/json\nCookie: io=G5AboEWBqzVXtdmhAAAA; JSESSIONID=50D9699111D5F0320FBE1525140C13B8; io=G5AboEWBqzVXtdmhAAAA; JSESSIONID=50D9699111D5F0320FBE1525140C13B8\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Cookie",
+					"value": "io=G5AboEWBqzVXtdmhAAAA; JSESSIONID=50D9699111D5F0320FBE1525140C13B8; io=G5AboEWBqzVXtdmhAAAA; JSESSIONID=50D9699111D5F0320FBE1525140C13B8",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/dreamcar/deals/1",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1642092972432,
+			"name": "ADAUGARE OFERTA PENTRU LICITATIE_ID ",
+			"description": "Metoda de tip POST prin care inseram o oferta catre o anumita licitatie, Id-ul licitatiei este dat in LINK. JSON in BODY requestului cu oferta.",
+			"collectionId": "8e90c32a-d76f-bfba-1115-92988e38d8cd",
+			"responses": [],
+			"rawModeData": "{\n\t\"price\":312300\n}"
+		},
+		{
+			"id": "91737ff0-f233-10bc-bed8-90328ee2c7c8",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/dreamcar/registration/",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1642094429027,
+			"name": "Creare cont -> POST ->REGISTRATION/",
+			"description": "Inregistrarea bazata pe un JSON din BODY-ul requestului. Se generaza un token cu care confirmam contul.",
+			"collectionId": "8e90c32a-d76f-bfba-1115-92988e38d8cd",
+			"responses": [],
+			"rawModeData": "{\n\"firstName\" :\"Nume\",\n\"lastName\": \"PrenumeTest\",\n\"email\": \"test@t.com\",\n\"password\": \"1234\",\n\"company_name\":\"Altex\"\n}"
+		},
+		{
+			"id": "c20a13f3-d93b-72ff-42cc-0dde2ba16e33",
+			"headers": "Content-Type: application/json\nCookie: io=Pn0aWL5GiH68USriAAAC; JSESSIONID=E4D80498C33E5A9411263B8A0CC2960C\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Cookie",
+					"value": "io=Pn0aWL5GiH68USriAAAC; JSESSIONID=E4D80498C33E5A9411263B8A0CC2960C",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/dreamcar/licitation/",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1642092977388,
+			"name": "LISTARE TOATE LICITATIILE  ACTIVE -> GET/LICITATIONS/",
+			"description": "Fiecare User poate vedea Licitatiile active.",
+			"collectionId": "8e90c32a-d76f-bfba-1115-92988e38d8cd",
+			"responses": [],
+			"rawModeData": "{\n\t\"price\":5000\n}"
+		},
+		{
+			"id": "cd95b9bc-549b-0c84-9a40-8f4a6105aa29",
+			"headers": "Cookie: io=Pn0aWL5GiH68USriAAAC; JSESSIONID=E4D80498C33E5A9411263B8A0CC2960C; io=Pn0aWL5GiH68USriAAAC; JSESSIONID=E4D80498C33E5A9411263B8A0CC2960C\n",
+			"headerData": [
+				{
+					"key": "Cookie",
+					"value": "io=Pn0aWL5GiH68USriAAAC; JSESSIONID=E4D80498C33E5A9411263B8A0CC2960C; io=Pn0aWL5GiH68USriAAAC; JSESSIONID=E4D80498C33E5A9411263B8A0CC2960C",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/dreamcar/licitation/all/",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1642093115147,
+			"name": "LISTARE TOATE SOLICITATI ACTIVE/INACTIVE",
+			"description": "Listarea tutoror licitatiilor, indiferent de statusul acestora\n",
+			"collectionId": "8e90c32a-d76f-bfba-1115-92988e38d8cd",
+			"responses": []
+		}
+	]
+}
