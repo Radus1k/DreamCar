@@ -13,36 +13,7 @@ Server is configured to use `MailDev` in order to simulate a mail server. More i
 
 # REST API
 
-The REST API to the DreamCar App is described below. Also, a postman collection with all following examples is included in the project.
-
-#### Registration
-
-### Request
-
-POST /http://localhost:8080/dreamcar/registration/
-
-Content-Type: application/json
-
-{
-"firstName" :"Nume",
-"lastName": "PrenumeTest",
-"email": "test@t.com",
-"password": "1234",
-"company_name":"Altex"
-}
-
-### Response 
-
-HTTP/1.1 200 OK
-Date: Thu, 24 Feb 2011 12:36:31 GMT
-Status: 200 OK
-Connection: close
-Content-Type: application/json
-Content-Length: 74
-
-477861be-be41-4b29-8241-50cf681ec5d1
-
-Token is used to generate the confirm link button . 
+The REST API to the DreamCar App is described  in `SwaggerDocs` file in the main tree.
 
 
 
