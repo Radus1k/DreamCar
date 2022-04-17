@@ -4,10 +4,13 @@ server:
     include-binding-errors: always
 
 spring:
+  mvc:
+    view:
+      suffix: .jsp
   datasource:
-    password:
+    password: root
     url: jdbc:postgresql://localhost:5432/dreamcar
-    username:
+    username: postgres
   jpa:
     hibernate:
       ddl-auto: create-drop

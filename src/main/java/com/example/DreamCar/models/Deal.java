@@ -16,6 +16,16 @@ public class Deal {
     )
     private long idDeals;
     private double price;
+    private long idLicitation;
+
+    public long getIdLicitation() {
+        return idLicitation;
+    }
+
+    public void setIdLicitation(long idLicitation) {
+        this.idLicitation = idLicitation;
+    }
+
     private String username;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -35,7 +45,7 @@ public class Deal {
                 "idDeals=" + idDeals +
                 "username=" + username +
                 ", price=" + price +
-                ", licitation=" + licitation +
+                ", licitationId=" + idLicitation +
                 '}';
     }
 
@@ -43,10 +53,32 @@ public class Deal {
         this.price = price;
 
     }
-
-    public Deal(double price, Licitation licitation, String username) {
+    public Deal(double price, long idLicitation) {
         this.price = price;
+        this.idLicitation = idLicitation;
+
+    }
+
+
+    public long getIdDeals() {
+        return idDeals;
+    }
+
+    public void setIdDeals(long idDeals) {
+        this.idDeals = idDeals;
+    }
+
+    public Deal(double price, Licitation licitation, String username, Long idLicitation) {
+        this.price = price;
+        this.idLicitation = idLicitation;
         this.licitation = licitation;
+        this.username = username;
+
+    }
+
+    public Deal(double price, Long idLicitation, String username) {
+        this.price = price;
+        this.idLicitation = idLicitation;
         this.username = username;
 
     }
@@ -70,6 +102,7 @@ public class Deal {
     public String getUsername() { return username; }
 
     public void setUsername(String username) { this.username = username; }
+
 }
 
 

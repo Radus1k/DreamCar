@@ -1,14 +1,13 @@
 package com.example.DreamCar.models;
 
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Table(name="Licitation")
 public class Licitation {
 
     @Column
@@ -26,6 +25,8 @@ public class Licitation {
     private Long id_licitation;
     private String category;
     private Integer cantity;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime deadline;
     private double targetPrice; // Pretul la care produsul s-a vandut
     private boolean status; // Licitatie terminata sau in curs. ->false pt terminata, true-> pt in desfasurare
@@ -81,32 +82,61 @@ public class Licitation {
 
     @Override
     public String toString() {
-        return "Licitation{" +
-                "id_licitation=" + id_licitation +
-                ", category='" + category + '\'' +
-                ", cantity=" + cantity +
-                ", deadline=" + deadline +
-                ", targetPrice=" + targetPrice +
-                ", status=" + status +
-                ", winner=" + winner +
-                ", dealList=" + dealList.toString() +
-                '}';
+        if(dealList == null) {
+            System.out.println("No oofers of id: ");
+            System.out.println(id_licitation);
+            return "Licitation{" +
+                    "id_licitation=" + id_licitation +
+                    ", category='" + category + '\'' +
+                    ", cantity=" + cantity +
+                    ", deadline=" + deadline +
+                    ", targetPrice=" + targetPrice +
+                    ", status=" + status +
+                    ", winner=" + winner +
+                    '}';
+        }
+        else{
+            System.out.println("WE have deals for the licitation");
+            return "Licitation{" +
+                    "id_licitation=" + id_licitation +
+                    ", category='" + category + '\'' +
+                    ", cantity=" + cantity +
+                    ", deadline=" + deadline +
+                    ", targetPrice=" + targetPrice +
+                    ", status=" + status +
+                    ", winner=" + winner +
+                    ", dealList=" + dealList.toString() +
+                    '}';
+
+        }
     }
 
+    public void setDeadline(LocalDateTime deadline) {
+        this.deadline = deadline;
+    }
 
+    public LocalDateTime getDeadline() {
+        return deadline;
+    }
 
-    public void viewDealsList(){
-        System.out.println("Deals list: ");
-        System.out.println(this.dealList);
+    public Long getId_licitation() {
+        return id_licitation;
+    }
+
+    public void setId_licitation(Long id_licitation) {
+        this.id_licitation = id_licitation;
+    }
+
+    public String viewDealList(){
+        System.out.println("Checking dealList: ");
+        System.out.println(dealList);
+       return this.dealList.toString();
 
     }
     public void addDealToList(Deal deal){
         this.dealList.add(deal);
     }
 
-    public List<Deal> getDealsList() {
-        return dealList;
-    }
 
     public Long getid_licitation() {
         return id_licitation;
@@ -120,9 +150,7 @@ public class Licitation {
         return cantity;
     }
 
-    public LocalDateTime getDeadline() {
-        return deadline;
-    }
+
 
     public double getTargetPrice() {
         return targetPrice;
@@ -143,10 +171,6 @@ public class Licitation {
     public List<Deal> getDealList() {
         return dealList;
     }
-    public void setDealsList(List<Deal> dealList) {
-        this.dealList = dealList;
-    }
-
 
     public void setid_licitation(Long id_licitation) {
         this.id_licitation = id_licitation;
@@ -160,9 +184,7 @@ public class Licitation {
         this.cantity = cantity;
     }
 
-    public void setDeadline(LocalDateTime deadline) {
-        this.deadline = deadline;
-    }
+
 
     public void setTargetPrice(double targetPrice) {
         this.targetPrice = targetPrice;

@@ -1,0 +1,15 @@
+html{
+    /*background:red !important;*/
+}
+
+.formInputs{
+    display:block !important;
+    width:100% !important;
+    border: 10px;
+    background: #f1f1f1; /*  Bootstrap's default background */
+}
+
+.formLabels{
+    padding: 10px !important;
+
+}

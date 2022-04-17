@@ -14,7 +14,7 @@ public class AppUserConfig {
     CommandLineRunner commandLineAppUserRunner(AppUserRepository repository){
 
         return args -> {
-            AppUser admin = new AppUser("marius", "radu", "admin@test.net", "$2a$10$806BSZrjXPoLrsZkznA8nex51CrNuWXrMgiuJsHLE.5.hx4PpdW8C", AppUserRole.ADMIN,false, true);
+            AppUser admin = new AppUser("radu", "marius", "admin@test.net", "$2a$10$806BSZrjXPoLrsZkznA8nex51CrNuWXrMgiuJsHLE.5.hx4PpdW8C", AppUserRole.ADMIN,false, true);
             repository.save(admin);
         };
     }

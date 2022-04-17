@@ -1,6 +1,8 @@
 package com.example.DreamCar.security.config;
 
 import com.example.DreamCar.Services.AppUserService;
+import com.example.DreamCar.appuser.AppUserRole;
+import com.example.DreamCar.models.AppUser;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,8 +26,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/dreamcar/registration/**")
-                    .permitAll()
+                    .antMatchers("/dreamcar/registration/**", "/sign_up").permitAll()
+                    .antMatchers("/delete_deal**").hasAuthority("ADMIN")
                 .anyRequest()
                 .authenticated().and()
                 .formLogin();

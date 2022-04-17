@@ -10,24 +10,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
 public class DreamCarConfigs {
-
-    @Bean
-    CommandLineRunner commandLineDealsRunner(DealsRepository repository) {
-
-        return args -> {
-            Deal d1 = new Deal(300);
-            Deal d2 = new Deal(500);
-
-
-            repository.saveAll(
-                    List.of(d1, d2)
-            );
-        };
-    }
 
     @Configuration
     public static class LicitationConfig {
@@ -36,8 +23,11 @@ public class DreamCarConfigs {
         CommandLineRunner commandLineLicitationRunner(LicitationRepository repository){
             LocalDateTime now = LocalDateTime.now();
             return args -> {
-                Licitation lic1 = new Licitation(1L,"sport",2, now.plusMinutes(20L),100,true);
-                Licitation lic2 = new Licitation(2L,"sport",3, now.plusMinutes(10L),100,true);
+                List<Deal> deals =new ArrayList<Deal>();
+                deals.add(new Deal(100,1L,"user1"));
+                deals.add(new Deal(200,2L,"user2"));
+                Licitation lic1 = new Licitation(1L,"bara_fata",2, now.plusMinutes(20L),100,true, deals);
+                Licitation lic2 = new Licitation(2L,"stop_spate",3, now.plusMinutes(10L),100,true, deals);
 
 
             repository.saveAll(

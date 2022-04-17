@@ -4,6 +4,7 @@ import com.example.DreamCar.email.EmailSender;
 import com.example.DreamCar.models.Deal;
 import com.example.DreamCar.models.Licitation;
 import com.example.DreamCar.repositories.DealsRepository;
+import com.example.DreamCar.repositories.LicitationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,14 +18,14 @@ import java.util.List;
 public class DealsService {
 
     private final DealsRepository dealsRepository;
-    private final DealsRepository licitationRepository;
+    private final LicitationRepository licitationRepository;
     private final LicitationService licitationService;
     private final EmailSender emailSender;
 
 
 
     @Autowired
-    public DealsService(DealsRepository dealsRepository, DealsRepository licitationRepository, LicitationService licitationService, EmailSender emailSender) {
+    public DealsService(DealsRepository dealsRepository, LicitationRepository licitationRepository, LicitationService licitationService, EmailSender emailSender) {
         this.dealsRepository = dealsRepository;
         this.licitationRepository = licitationRepository;
         this.licitationService = licitationService;
@@ -46,17 +47,27 @@ public class DealsService {
         return dealsRepository.findAll();
     }
 
+    public Deal getDealById(Long Id) {
+        return dealsRepository.getById(Id);
+    }
+
     public List<Deal> viewUserDeals(Principal principal) {
         return dealsRepository.findMyDeals(principal.getName());
 
     }
 
     public void addNewDeal(Long licitationId, Deal deal_aux, Principal principal) throws IllegalAccessException {
+        if (principal.getName().equals("admin@test.net")) {
+            System.out.println(principal.getName());
+            throw new IllegalAccessException(
+                    "Admin cannot create offers!");
+        }
         Licitation licitation = licitationService.getLicitationById(licitationId);
         String username = principal.getName();
-        Deal deal = new Deal(deal_aux.getPrice(), licitation, username);
+        Deal deal = new Deal(deal_aux.getPrice(), licitation, username, licitationId);
         dealsRepository.save(deal);
-        if(deal.getPrice()> licitation.getTargetPrice()){ // DACA CINEVA OFERA PESTE TARGET, LICITATIA SE INCHEIE SI SE ANUNTA CASTIGATORUL
+
+        if(deal.getPrice()<= licitation.getTargetPrice()){ // DACA CINEVA OFERA SUB TARGET, LICITATIA SE INCHEIE SI SE ANUNTA CASTIGATORUL
             System.out.println("\n\n\n\n\n WE HAVE A WINNER!!! \n\n\n");;
             licitationService.setWinner(licitationId, deal.getUsername());
             emailSender.send(
@@ -68,11 +79,6 @@ public class DealsService {
     }
 
     public void deleteDeal(Long dealID, Principal principal) throws IllegalAccessException {
-        if(!principal.getName().equals("admin")){
-            throw new IllegalAccessException(
-                    "Only Admin can delete licitations!");
-        }
-
         boolean lic_exists = dealsRepository.existsById(dealID);
         if (!lic_exists) {
             throw new IllegalAccessException(
