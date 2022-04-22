@@ -20,22 +20,27 @@ public interface DealsRepository extends JpaRepository<Deal,Long> {
     List<Deal> findMyDeals(String username);
 
     @Modifying
+    @Transactional
     @Query("update Deals d set d.price  = ?1 WHERE d.idDeals=?2 ")
     void updateDealPrice(double Price,long id_deal);
+
+
+    @Query("SELECT d FROM Deals d WHERE d.idDeals =?1")
+    Deal getById(Long id_deal);
+
 
     @Repository
     @Transactional(readOnly = true)
     interface AppUserRepository
             extends JpaRepository<AppUser, Long> {
 
-
-
-        Optional<AppUser> findByEmail(String email);
-        @Transactional
-        @Modifying
-        @Query("UPDATE AppUser a " +
-                "SET a.enabled = TRUE WHERE a.email = ?1")
-        int enableAppUser(String email);
+//
+//        Optional<AppUser> findByEmail(String email);
+//        @Transactional
+//        @Modifying
+//        @Query("UPDATE AppUser a " +
+//                "SET a.enabled = TRUE WHERE a.email = ?1")
+//        int enableAppUser(String email);
 
 
 

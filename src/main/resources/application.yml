@@ -18,7 +18,7 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
-    show-sql: true
+    show-sql: false
 
   mail:
     host: localhost
@@ -37,4 +37,14 @@ spring:
           connectiontimeout: 5000
           timeout: 3000
           writetimeout: 5000
+
+
+#spring:
+#  datasource:
+#    url: jdbc:h2:mem:mydb
+#    username: sa
+#    password: password
+#    driverClassName: org.h2.Driver
+#  jpa:
+#    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
 

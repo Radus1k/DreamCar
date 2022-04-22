@@ -34,8 +34,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 public class DealsControllerTest{
 
-    @Autowired
-    private TestEntityManager entityManager;
 
     @Autowired
     private DealsRepository dealsRepository;

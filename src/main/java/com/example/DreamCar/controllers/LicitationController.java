@@ -3,6 +3,8 @@ package com.example.DreamCar.controllers;
 import com.example.DreamCar.Services.LicitationService;
 import com.example.DreamCar.models.Deal;
 import com.example.DreamCar.models.Licitation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -20,6 +22,8 @@ import java.time.LocalDateTime;
 public class LicitationController {
 
     private final LicitationService licitationService;
+
+    Logger logger = LoggerFactory.getLogger(LicitationController.class);
 
     @Autowired
     public LicitationController(LicitationService licitationService) {

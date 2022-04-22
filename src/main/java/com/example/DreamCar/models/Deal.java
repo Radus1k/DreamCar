@@ -59,6 +59,13 @@ public class Deal {
 
     }
 
+    public Deal(Long Id, double price, long idLicitation) {
+        this.idDeals = Id;
+        this.price = price;
+        this.idLicitation = idLicitation;
+
+    }
+
 
     public long getIdDeals() {
         return idDeals;
@@ -69,6 +76,14 @@ public class Deal {
     }
 
     public Deal(double price, Licitation licitation, String username, Long idLicitation) {
+        this.price = price;
+        this.idLicitation = idLicitation;
+        this.licitation = licitation;
+        this.username = username;
+    }
+
+    public Deal(Long id, double price, Licitation licitation, String username, Long idLicitation) {
+        this.idDeals = id;
         this.price = price;
         this.idLicitation = idLicitation;
         this.licitation = licitation;

@@ -7,6 +7,7 @@ import com.example.DreamCar.models.Licitation;
 import com.example.DreamCar.repositories.LicitationRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.support.NullValue;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.scheduling.annotation.Scheduled;
 import com.example.DreamCar.email.EmailSender;
@@ -55,6 +56,14 @@ public class LicitationService {
         licitationRepository.save(licitation);
     }
 
+    public Licitation getById(Long id){
+        boolean lic_exists = licitationRepository.existsById(id);
+        if(!lic_exists) {
+            return licitationRepository.getById(id);
+        }
+        return null;
+    }
+
     public void deleteLicitation(Long licitationId) throws IllegalAccessException {
 
         boolean lic_exists = licitationRepository.existsById(licitationId);
@@ -89,12 +98,26 @@ public class LicitationService {
     }
 
 
+    public boolean updateTargetPrice(Licitation licitation) {
+        if (!licitationRepository.existsById(licitation.getid_licitation())) {
+            return false;
+        }
+        else{
+            licitationRepository.updateLicitationTargetPrice(licitation.getTargetPrice(), licitation.getid_licitation());
+            licitationRepository.save(licitation);
+            return true;
+        }
+    }
+    
+
     //TODO: SCHEDULED TASK
     @Transactional
-    @Scheduled(fixedRate=1000000)//  10 secunde
+    @Scheduled(fixedRate=10000)//  10 secunde
     public void checkLicitations() {
         try {
+            System.out.println("Checking expired licitations");
             List<Licitation> licitationList = licitationRepository.findAll();
+            System.out.print(licitationList.size());
             if (licitationList.size() > 0) {
                 for (Licitation lic : licitationList) {
                     if (lic.getDeadline().isBefore(LocalDateTime.now())) {
@@ -104,7 +127,7 @@ public class LicitationService {
                 }
             }
             else{
-                System.out.println("Empty list!");
+                System.out.println("Empty list of licitations!");
             }
         }
         catch(Exception e ){
