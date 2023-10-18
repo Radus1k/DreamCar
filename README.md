@@ -1,4 +1,5 @@
 # DreamCar
+!! PROJECT MADE FOR EDUCATIONAL/LEARNING PURPOSES !!
 Java Spring Boot Project who manage an inverse auction for a Car Company using API Calls.
 
 DreamCar is a Inverse Auction company. The admin creates Auctions, and some offertants create offers for specific auctions. The auction ends when the target price defined is reached, or when the expire date occurs.
